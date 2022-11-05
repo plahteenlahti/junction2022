@@ -3,6 +3,12 @@ import * as cors from 'cors'
 import * as express from 'express'
 import * as functions from 'firebase-functions'
 
+import { defineSecret } from 'firebase-functions/params'
+import { mockWoltPreviewDelivery } from './routes/delivery'
+
+const woltApiToken = defineSecret('WOLT_API_TOKEN')
+const woltMerchantId = defineSecret('WOLT_MERCHANT_ID')
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //
@@ -50,10 +56,14 @@ app.post('/b', (req, res) => {
   // res.send(Widgets.create())
 })
 
-app.get('/helloworld', (req, res) => res.send('Hello World!'))
-// app.put('/:id', (req, res) => res.send(Widgets.update(req.params.id, req.body)));
-// app.delete('/:id', (req, res) => res.send(Widgets.delete(req.params.id)));
-// app.get('/', (req, res) => res.send(Widgets.list()));
+app.get('/helloworld', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.get('/mock-wolt', mockWoltPreviewDelivery)
 
 // Expose Express API as a single Cloud Function:
-export const orders = functions.region('europe-west3').https.onRequest(app)
+export const orders = functions
+  .runWith({ secrets: [woltMerchantId, woltApiToken] })
+  .region('europe-west3')
+  .https.onRequest(app)
