@@ -16,8 +16,10 @@ export type DeliveryStatus =
   | 'error'
 
 export type Delivery = {
+  id: string
   receiver_id: string
   sender_id: string
+  paying_user_id: string
   status: DeliveryStatus
   description: string
 
@@ -36,6 +38,7 @@ export type Address = {
 }
 
 export type User = {
+  id: string
   address: Address
   email: string
   name: string
