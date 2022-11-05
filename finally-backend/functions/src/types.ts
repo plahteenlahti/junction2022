@@ -2,6 +2,8 @@ type WoltDetails = {
   orderId: string
   feeAmount: number
   feeCurrency: string
+
+  trackingUrl: string
 }
 
 type DeliveryStatus =

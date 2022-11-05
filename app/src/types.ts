@@ -2,9 +2,11 @@ type WoltDetails = {
   orderId: string
   feeAmount: number
   feeCurrency: string
+
+  trackingUrl: string
 }
 
-type DeliveryStatus =
+export type DeliveryStatus =
   | 'created'
   | 'accepted'
   | 'ordered'

@@ -1,45 +1,124 @@
+import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons'
 import {
-  Box,
-  Code,
   Container,
   Heading,
+  HStack,
+  Skeleton,
+  Stack,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
 import { where } from 'firebase/firestore'
+import { DateTime } from 'luxon'
 import { FirebaseCollection } from '../db/collections'
 import { useCollection } from '../db/useCollection'
-import { Delivery } from '../types'
+import { Delivery, DeliveryStatus } from '../types'
 
-type Status = 'loading' | 'error' | 'success'
+type DeliveryType = 'sending' | 'receiving'
+const getDeliveryStatusText = (
+  status: DeliveryStatus,
+  type: DeliveryType,
+  etaPickup?: string,
+  etaDelivery?: string
+): string => {
+  switch (status) {
+    case 'created':
+      return 'Pending acceptance'
+    case 'accepted':
+      return 'Accepted'
+    case 'ordered':
+      if (type === 'sending')
+        return `Estimated pickup ${etaPickup ?? 'at an unknown time'}`
+      return 'Pending shipment'
+    case 'shipped':
+      if (type === 'receiving')
+        return `Estimated delivery ${etaDelivery ?? 'at an unknown time'}`
+      return 'Shipped'
+    case 'delivered':
+      return `Delivered ${etaDelivery ?? 'at an unknown time'}`
+    case 'rejected':
+      return 'Rejected'
+    case 'error':
+      return 'Error'
+    default:
+      return 'Unknown status'
+  }
+}
+
+const formatTime = (timeString: string) => {
+  const time = DateTime.fromISO(timeString.split('Z')[0])
+  if (DateTime.now().diff(time).days >= -1)
+    return time.toLocaleString(DateTime.DATE_SHORT)
+  return time.toLocaleString(DateTime.TIME_SIMPLE)
+}
+
+const getItem = (d: Delivery, userId: string) => {
+  const sent = d.sender_id === userId
+  const pickupEta = d.pickup_eta ? formatTime(d.pickup_eta) : undefined
+  const dropoffEta = d.deliver_eta ? formatTime(d.deliver_eta) : undefined
+  return (
+    <HStack
+      key={d.deliver_eta}
+      p={2}
+      py={4}
+      borderWidth={1}
+      borderRadius={3}
+      borderColor={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+      {sent ? <ArrowUpIcon /> : <ArrowDownIcon />}
+      <Text fontSize="sm">{d.description}</Text>
+      <Text
+        flex={1}
+        textAlign="end"
+        fontSize="xs"
+        color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+        {getDeliveryStatusText(
+          d.status,
+          sent ? 'sending' : 'receiving',
+          pickupEta,
+          dropoffEta
+        )}
+      </Text>
+    </HStack>
+  )
+}
 
 export const History = () => {
-  const { data: received, status: receivedStatus } = useCollection<Delivery>(
+  const userId = 'gJVsgCa5HlVUM58mscoxgJOIiej2'
+  const { data: received } = useCollection<Delivery>(
     FirebaseCollection.Deliveries,
-    where('receiver_id', '==', 'receiver-user-id')
+    where('receiver_id', '==', userId)
   )
 
-  const { data: sent, status: sentStatus } = useCollection<Delivery>(
+  const { data: sent } = useCollection<Delivery>(
     FirebaseCollection.Deliveries,
-    where('sender_id', '==', 'receiver-user-id')
+    where('sender_id', '==', userId)
   )
 
   console.log(received)
+
+  const loading = !sent || !received
+
+  const allData = (received ?? []).concat(sent ?? [])
 
   return (
     <Container maxW="7xl">
       <Heading marginBottom={2}>Deliveries</Heading>
       <Text
         fontSize="sm"
-        color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+        color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
+        marginBottom={'20px'}>
         Packages {`you've`} sent and received
       </Text>
 
-      {received?.map((item, key) => (
+      {!!loading && <Skeleton height="400px" />}
+
+      {!loading && <Stack>{allData.map(d => getItem(d, userId))}</Stack>}
+
+      {/* {received?.map((item, key) => (
         <Box key={`${item.receiver_id}_${item.pickup_eta}_${key}`}>
           <Code whiteSpace="pre">{JSON.stringify(item, undefined, 4)}</Code>
         </Box>
-      ))}
+      ))} */}
     </Container>
   )
 }

@@ -17,9 +17,6 @@ const app = express()
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }))
 
-// Add middleware to authenticate requests
-// app.use(myMiddleware);
-
 app.get('/helloworld', (req, res) => {
   res.send('Hello World!')
 })
@@ -38,7 +35,7 @@ app.get('/mock/create', async (req, res) => {
   res.status(201).send('ok')
 })
 
-app.get('/confirm/:id', confirmDelivery) // TODO: get for ease of testing
+app.post('/confirm/:id', confirmDelivery)
 
 // Expose Express API as a single Cloud Function:
 export const orders = functions
