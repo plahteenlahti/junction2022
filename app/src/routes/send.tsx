@@ -1,20 +1,54 @@
-import { AtSignIcon, QuestionIcon } from '@chakra-ui/icons'
+import { AtSignIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
   Checkbox,
   Container,
-  Flex,
   Input,
   InputGroup,
   InputLeftElement,
+  Spinner,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
+import { DocumentData, where } from 'firebase/firestore'
+import { useState } from 'react'
+import { ParticipantCard } from '../components/ParticipantCard'
+import { FirebaseCollection } from '../db/collections'
+import { useCollection } from '../db/useCollection'
+
+type Participant = {
+  address: {
+    city: string
+    country: string
+    line1: string
+    line2: string
+    postcode: string
+  }
+  email: string
+  phone: string
+}
+
+const userFound = (data: DocumentData[]): Participant | null => {
+  if (!!data && data.length !== 0) {
+    return data[0] as Participant
+  }
+  return null
+}
 
 export const Send = () => {
+  const [userID, setUserID] = useState('')
+
+  const { data, status } = useCollection(
+    FirebaseCollection.Users,
+    where('phone', '==', userID)
+  )
+  const user = userFound(data)
+
+  console.log(user)
+
   return (
-    <Container maxW="7xl" height="60%">
+    <Container maxW="7xl">
       <Box
         display="flex"
         justifyContent="center"
@@ -28,21 +62,17 @@ export const Send = () => {
             Sending from
           </Text>
 
-          <Box boxShadow="md" padding={3} rounded="md">
-            <Text
-              fontSize="xs"
-              color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
-              marginBottom="2">
-              Home
-            </Text>
-            <Flex flexDirection="row" alignItems="center">
-              <QuestionIcon color="gray.300" marginRight="2.5" />
-              <Text
-                color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}>
-                Otakaari 24, 02150 Espoo
-              </Text>
-            </Flex>
-          </Box>
+          <ParticipantCard
+            email="perttu@lahteenlahti.com"
+            phone="0503134326"
+            address={{
+              city: 'Pori',
+              country: 'asd',
+              line1: 'as',
+              line2: 'asd',
+              postcode: 'asd'
+            }}
+          />
         </Box>
 
         <Box minWidth="sm" paddingX={3} marginTop={6}>
@@ -52,23 +82,47 @@ export const Send = () => {
             color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
             Deliver to
           </Text>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<AtSignIcon color="gray.300" />}
+
+          {!user ? (
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                children={
+                  status === 'loading' ? (
+                    <Spinner size="xs" />
+                  ) : (
+                    <AtSignIcon color="gray.300" />
+                  )
+                }
+              />
+              <Input
+                type="text"
+                placeholder="Phone number"
+                onChange={e => setUserID(e.target.value)}
+              />
+            </InputGroup>
+          ) : (
+            <ParticipantCard
+              email={user.email}
+              phone={user.phone}
+              address={user.address}
             />
-            <Input type="text" placeholder="Phone number" />
-          </InputGroup>
+          )}
         </Box>
       </Box>
 
       <Box
+        marginTop={32}
         height="100%"
         display="flex"
         flexDirection="column"
         justifyContent="flex-end">
-        <Box flexDirection="row" display="flex" marginBottom={2}>
-          <Checkbox colorScheme="brand" defaultChecked>
+        <Box
+          flexDirection="row"
+          display="flex"
+          marginBottom={4}
+          justifyContent="center">
+          <Checkbox colorScheme={useColorModeValue('brand', 'brandWhite')}>
             Receiver is paying for the delivery
           </Checkbox>
         </Box>
