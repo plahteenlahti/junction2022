@@ -1,21 +1,7 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import { collection } from 'firebase/firestore/lite'
-import { useCollection } from 'react-firebase-hooks/firestore';
-
 import './App.css'
-import { db } from './Firebase';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  const [value, loading, error] = useCollection(
-    collection(db, 'deliveries')
-  )
-
-  console.log("value", value);
-  console.log("loading", loading);
-
   return (
     <div className="App">
       <div>
@@ -28,9 +14,6 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
