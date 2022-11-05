@@ -1,9 +1,15 @@
 {
   "env": {
-    "node": true
+    "node": true,
+    "browser": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
-  "plugins": ["prettier"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "react/no-children-prop": "off",
@@ -15,6 +21,7 @@
       }
     ]
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020
