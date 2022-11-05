@@ -1,13 +1,15 @@
 import { createDeliveryOrder, getDeliveryFee } from './api'
 import { CUSTOMER_SUPPORT_INFO } from './constants'
-import { Wolt } from './types'
+import { Wolt, WoltSecrets } from './types'
 
 export const previewDelivery = async (
+  secrets: WoltSecrets,
   pickupAddress: string,
   dropoffAddress: string,
   dropoffTime: Date | null // null means "as soon as possible"
 ) => {
   const deliveryFeeResponse = await getDeliveryFee(
+    secrets,
     pickupAddress,
     dropoffAddress,
     dropoffTime?.toISOString()
@@ -32,12 +34,14 @@ type ContactInfo = {
 }
 
 export const bookDelivery = async (
+  secrets: WoltSecrets,
   pickupAddress: string,
   dropoffAddress: string,
   dropoffTime: Date | null, // null means "as soon as possible"
   recipient: ContactInfo,
   sender: ContactInfo,
   itemName: string
+  // eslint-disable-next-line max-params
 ) => {
   const pickupContact = {
     ...recipient,
@@ -56,6 +60,7 @@ export const bookDelivery = async (
     tags: [],
   }
   const deliveryOrderResponse = await createDeliveryOrder(
+    secrets,
     pickupAddress,
     dropoffAddress,
     pickupContact,

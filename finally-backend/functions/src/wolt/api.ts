@@ -1,12 +1,10 @@
-import { Wolt } from './types'
-import config from '../config'
+import { Wolt, WoltSecrets } from './types'
 import got, { HTTPError } from 'got'
 
-const HEADERS = { Authorization: `Bearer ${config.WOLT_API_TOKEN}` }
-
-const BASE_URL = `https://daas-public-api.development.dev.woltapi.com/merchants/${config.WOLT_MERCHANT_ID}`
+const BASE_URL = `https://daas-public-api.development.dev.woltapi.com/merchants`
 
 export const getDeliveryFee = async (
+  secrets: WoltSecrets,
   pickupAddress: string,
   dropoffAddress: string,
   dropoffTime?: string
@@ -26,10 +24,13 @@ export const getDeliveryFee = async (
   }
 
   try {
-    const response = await got.post(`${BASE_URL}/delivery-fee`, {
-      headers: HEADERS,
-      json: body,
-    })
+    const response = await got.post(
+      `${BASE_URL}/${secrets.merchantId}/delivery-fee`,
+      {
+        headers: { Authorization: `Bearer ${secrets.apiToken}` },
+        json: body,
+      }
+    )
     return {
       status: 'ok' as const,
       response: JSON.parse(response.body) as Wolt.DeliveryFeeResponse,
@@ -48,6 +49,7 @@ export const getDeliveryFee = async (
 }
 
 export const createDeliveryOrder = async (
+  secrets: WoltSecrets,
   pickupAddress: string,
   dropoffAddress: string,
   pickupContact: Wolt.ContactDetails,
@@ -80,10 +82,13 @@ export const createDeliveryOrder = async (
   }
 
   try {
-    const response = await got.post(`${BASE_URL}/delivery-order`, {
-      headers: HEADERS,
-      json: body,
-    })
+    const response = await got.post(
+      `${BASE_URL}/${secrets.merchantId}/delivery-order`,
+      {
+        headers: { Authorization: `Bearer ${secrets.apiToken}` },
+        json: body,
+      }
+    )
     return {
       status: 'ok' as const,
       response: JSON.parse(response.body) as Wolt.DeliveryOrderResponse,

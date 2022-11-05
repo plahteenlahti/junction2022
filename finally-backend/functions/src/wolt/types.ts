@@ -94,3 +94,8 @@ export namespace Wolt {
     details: string
   }
 }
+
+export type WoltSecrets = {
+  apiToken: string
+  merchantId: string
+}
