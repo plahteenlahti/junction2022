@@ -8,8 +8,11 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
+import { getAuth } from 'firebase/auth'
 import { where } from 'firebase/firestore'
 import { DateTime } from 'luxon'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FirebaseCollection } from '../db/collections'
 import { useCollection } from '../db/useCollection'
 import { Delivery, DeliveryStatus } from '../types'
@@ -83,7 +86,16 @@ const getItem = (d: Delivery, userId: string) => {
 }
 
 export const History = () => {
-  const userId = 'gJVsgCa5HlVUM58mscoxgJOIiej2'
+  const auth = getAuth()
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!auth.currentUser) {
+      navigate('/')
+    }
+  }, [])
+
+  const userId = auth.currentUser?.uid ?? ''
+
   const { data: received } = useCollection<Delivery>(
     FirebaseCollection.Deliveries,
     where('receiver_id', '==', userId)
@@ -112,7 +124,15 @@ export const History = () => {
 
       {!!loading && <Skeleton height="400px" />}
 
-      {!loading && <Stack>{allData.map(d => getItem(d, userId))}</Stack>}
+      {!loading && !!allData.length && (
+        <Stack>{allData.map(d => getItem(d, userId))}</Stack>
+      )}
+
+      {!loading && !allData.length && (
+        <Text fontSize="m" marginTop="50px">
+          Nothing here yet
+        </Text>
+      )}
 
       {/* {received?.map((item, key) => (
         <Box key={`${item.receiver_id}_${item.pickup_eta}_${key}`}>

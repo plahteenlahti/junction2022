@@ -24,7 +24,7 @@ export const Navigation = () => {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Flex>
             <Stack direction={'row'}>
-              <Menu>
+              {/* <Menu>
                 <MenuButton
                   as={Button}
                   rounded={'full'}
@@ -47,7 +47,7 @@ export const Navigation = () => {
                   <MenuItem>Account Settings</MenuItem>
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
-              </Menu>
+              </Menu> */}
               <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>
