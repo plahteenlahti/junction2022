@@ -138,7 +138,7 @@ export const Login = () => {
             <Button
               id="sign-in-button"
               marginTop={2}
-              colorScheme="blue"
+              colorScheme={useColorModeValue('brand', 'brandWhite')}
               variant="solid"
               type="submit">
               Send
