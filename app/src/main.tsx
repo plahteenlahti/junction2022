@@ -30,16 +30,17 @@ export default theme
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <Navigation />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Send />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/send" element={<Send />} />
-          <Route path="/order-confirmed" element={<OrderConfirmed />} />
-        </Routes>
-      </BrowserRouter>
-    </ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <Navigation />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/start" element={<Start />} />
+            <Route path="/order-confirmed" element={<OrderConfirmed />} />
+            <Route path="/recipes" element={<Recipes />} />
+          </Routes>
+        </BrowserRouter>
+      </ChakraProvider>
   </React.StrictMode>
 )

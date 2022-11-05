@@ -1,10 +1,20 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import { collection } from 'firebase/firestore/lite'
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 import './App.css'
+import { db } from './Firebase';
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const [value, loading, error] = useCollection(
+    collection(db, 'deliveries')
+  )
+
+  console.log("value", value);
+  console.log("loading", loading);
 
   return (
     <div className="App">
