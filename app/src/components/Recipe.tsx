@@ -21,7 +21,7 @@ export const Recipe = () => {
         backdropFilter="auto"
         rounded="xl"
         padding="12px"
-        backdropBlur="xl"
+        backdropBlur="3xl"
         width="100%">
         <Text fontSize="sm" marginBottom="1" color="white">
           Spicy Ramen with Mixin Sea Food

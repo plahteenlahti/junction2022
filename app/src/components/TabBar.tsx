@@ -1,5 +1,5 @@
 import { ChatIcon } from '@chakra-ui/icons'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text, useColorModeValue } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
 
 export const TabBar = () => {
@@ -13,7 +13,8 @@ export const TabBar = () => {
       right={0}
       paddingX={3}
       paddingY={6}
-      borderTop="rebeccapurple"
+      borderTop="1px"
+      borderColor={useColorModeValue('gray.100', 'gray.900')}
       display="flex"
       flexDirection="row">
       <Box flex="1">

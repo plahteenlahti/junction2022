@@ -16,6 +16,7 @@ import { useState } from 'react'
 import { ParticipantCard } from '../components/ParticipantCard'
 import { FirebaseCollection } from '../db/collections'
 import { useCollection } from '../db/useCollection'
+import { User } from '../types'
 
 type Participant = {
   address: {
@@ -29,7 +30,7 @@ type Participant = {
   phone: string
 }
 
-const userFound = (data: DocumentData[]): Participant | null => {
+const userFound = (data: User[] | undefined): Participant | null => {
   if (!!data && data.length !== 0) {
     return data[0] as Participant
   }
@@ -39,7 +40,7 @@ const userFound = (data: DocumentData[]): Participant | null => {
 export const Send = () => {
   // userID to search
   const [userID, setUserID] = useState('')
-  const { data, status } = useCollection(
+  const { data, status } = useCollection<User>(
     FirebaseCollection.Users,
     where('phone', '==', userID)
   )
@@ -48,7 +49,7 @@ export const Send = () => {
   console.log(user)
 
   return (
-    <Container maxW="7xl">
+    <Container maxW="sm">
       <Box
         display="flex"
         justifyContent="center"
@@ -75,7 +76,7 @@ export const Send = () => {
           />
         </Box>
 
-        <Box minWidth="sm" paddingX={3} marginTop={6}>
+        <Box minWidth="sm" maxW="" paddingX={3} marginTop={6}>
           <Text
             marginBottom={2}
             fontSize="xs"
