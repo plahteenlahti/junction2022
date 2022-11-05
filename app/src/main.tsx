@@ -8,7 +8,6 @@ import { OrderConfirmed } from './routes/order-confirmed'
 import { Send } from './routes/send'
 import { mode } from '@chakra-ui/theme-tools'
 import { FirebaseAppProvider } from 'reactfire'
-
 import { extendTheme } from '@chakra-ui/react'
 import { Navigation } from './components/Navigation'
 import { FirebaseInstanceProvider } from './FirebaseInstance'

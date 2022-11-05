@@ -6,7 +6,14 @@
   "plugins": ["prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/no-children-prop": "off"
+    "react/no-children-prop": "off",
+    "prettier/prettier": [
+      "error",
+      {},
+      {
+        "usePrettierrc": true
+      }
+    ]
   },
   "parserOptions": {
     "sourceType": "module",
