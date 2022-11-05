@@ -2,6 +2,7 @@ import { AtSignIcon, QuestionIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
+  Checkbox,
   Container,
   Flex,
   Input,
@@ -13,13 +14,13 @@ import {
 
 export const Send = () => {
   return (
-    <Container maxW="7xl">
+    <Container maxW="7xl" height="60%">
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
         flexDirection="column">
-        <Box minWidth="sm" padding={6}>
+        <Box minWidth="sm" paddingX={3} marginTop={6}>
           <Text
             marginBottom={2}
             fontSize="xs"
@@ -44,7 +45,7 @@ export const Send = () => {
           </Box>
         </Box>
 
-        <Box minWidth="sm" padding={6}>
+        <Box minWidth="sm" paddingX={3} marginTop={6}>
           <Text
             marginBottom={2}
             fontSize="xs"
@@ -65,8 +66,12 @@ export const Send = () => {
         height="100%"
         display="flex"
         flexDirection="column"
-        paddingX={3}
         justifyContent="flex-end">
+        <Box flexDirection="row" display="flex" marginBottom={2}>
+          <Checkbox colorScheme="brand" defaultChecked>
+            Receiver is paying for the delivery
+          </Checkbox>
+        </Box>
         <Button
           size="lg"
           colorScheme={useColorModeValue('brand', 'brandWhite')}

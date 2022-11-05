@@ -11,6 +11,7 @@ import { FirebaseAppProvider } from 'reactfire'
 import { extendTheme } from '@chakra-ui/react'
 import { Navigation } from './components/Navigation'
 import { FirebaseInstanceProvider } from './FirebaseInstance'
+import './index.css'
 
 // 3. extend the theme
 const theme = extendTheme({

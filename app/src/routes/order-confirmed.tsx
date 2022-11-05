@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import Map from 'react-map-gl'
 
 export const OrderConfirmed = () => {
