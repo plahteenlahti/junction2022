@@ -3,5 +3,5 @@ export const Order = () => {
     <main>
       <h2>Ship my order</h2>
     </main>
-  );
-};
+  )
+}

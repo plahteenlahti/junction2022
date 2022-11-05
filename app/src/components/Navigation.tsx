@@ -1,37 +1,20 @@
-import { ReactNode } from 'react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {
-  Box,
-  Flex,
   Avatar,
-  Link,
+  Box,
   Button,
+  Center,
+  Flex,
   Menu,
   MenuButton,
-  MenuList,
-  MenuItem,
   MenuDivider,
-  useDisclosure,
-  useColorModeValue,
+  MenuItem,
+  MenuList,
   Stack,
   useColorMode,
-  Center,
-  Text
+  useColorModeValue,
+  useDisclosure
 } from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-
-const NavLink = ({ children }: { children: ReactNode }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700')
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-)
 
 export const Navigation = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -66,6 +49,9 @@ export const Navigation = () => {
                   <MenuItem>Logout</MenuItem>
                 </MenuList>
               </Menu>
+              <Button onClick={toggleColorMode}>
+                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
             </Stack>
           </Flex>
         </Flex>

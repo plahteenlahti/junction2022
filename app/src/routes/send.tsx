@@ -1,4 +1,4 @@
-import { AtSignIcon, QuestionIcon, StarIcon } from '@chakra-ui/icons'
+import { AtSignIcon, QuestionIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
