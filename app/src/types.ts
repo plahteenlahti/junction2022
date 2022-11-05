@@ -1,10 +1,10 @@
-export type WoltDetails = {
-  id: string
+type WoltDetails = {
+  orderId: string
   feeAmount: number
   feeCurrency: string
 }
 
-export type DeliveryStatus =
+type DeliveryStatus =
   | 'created'
   | 'accepted'
   | 'ordered'
@@ -14,18 +14,15 @@ export type DeliveryStatus =
   | 'error'
 
 export type Delivery = {
-  collection_time?: Date
-  deliver_time?: Date
-  description?: string
-
-  est_collection_time?: Date
-  est_deliver_time?: Date
-
   receiver_id: string
   sender_id: string
-
   status: DeliveryStatus
-  wolt?: WoltDetails
+  description: string
+
+  pickup_eta?: string
+  deliver_eta?: string
+
+  woltDetails?: WoltDetails
 }
 
 export type Address = {
@@ -39,5 +36,6 @@ export type Address = {
 export type User = {
   address: Address
   email: string
+  name: string
   phone: string
 }
