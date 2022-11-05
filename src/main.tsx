@@ -5,15 +5,18 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Start } from "./routes/start";
 import { Order } from "./routes/order";
+import { ChakraProvider } from '@chakra-ui/react'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/start" element={<Start />} />
-      </Routes>
-    </BrowserRouter>
+    <ChakraProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/start" element={<Start />} />
+        </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>
 );
