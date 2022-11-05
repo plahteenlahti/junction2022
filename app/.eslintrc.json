@@ -5,7 +5,8 @@
   "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "plugins": ["prettier"],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/no-children-prop": "off"
   },
   "parserOptions": {
     "sourceType": "module",

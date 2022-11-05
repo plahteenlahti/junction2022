@@ -1,13 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react'
-
-
+import '@fontsource/inter/500.css'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './index.css'
 import { Order } from './routes/order'
 import { OrderConfirmed } from './routes/order-confirmed'
 import { Send } from './routes/send'
+import { mode } from '@chakra-ui/theme-tools'
 
 import { extendTheme } from '@chakra-ui/react'
 import { Navigation } from './components/Navigation'
@@ -22,11 +21,9 @@ const theme = extendTheme({
     heading: `'Inter', sans-serif`,
     body: `'Inter', sans-serif`
   },
-  layerStyles: {
-    base: {
-      bg: 'gray.900',
-      border: '2px solid',
-      borderColor: 'gray.500'
+  colors: {
+    brand: {
+      100: '#000'
     }
   }
 })
