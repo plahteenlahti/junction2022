@@ -1,5 +1,7 @@
 import { createDeliveryOrder, getDeliveryFee } from './api'
 import { CUSTOMER_SUPPORT_INFO } from './constants'
+import { stringifyAddress } from '../utils'
+import { User } from '../types'
 import { Wolt, WoltSecrets } from './types'
 
 export const previewDelivery = async (
@@ -28,31 +30,26 @@ export const previewDelivery = async (
   }
 }
 
-type ContactInfo = {
-  name: string
-  phoneNumber: string // international format
-}
-
 export const bookDelivery = async (
   secrets: WoltSecrets,
-  pickupAddress: string,
-  dropoffAddress: string,
+  sender: User,
+  recipient: User,
   dropoffTime: Date | null, // null means "as soon as possible"
-  recipient: ContactInfo,
-  sender: ContactInfo,
   itemName: string
   // eslint-disable-next-line max-params
 ) => {
   const pickupContact = {
-    ...recipient,
-    phone_number: recipient.phoneNumber,
+    name: recipient.name,
+    phone_number: recipient.phone,
     send_tracking_link_sms: false,
   }
   const dropoffContact = {
-    ...sender,
-    phone_number: sender.phoneNumber,
+    name: sender.name,
+    phone_number: sender.phone,
     send_tracking_link_sms: false,
   }
+  const fromAddress = stringifyAddress(sender.address)
+  const toAddress = stringifyAddress(recipient.address)
   const itemInfo: Wolt.Content = {
     count: 1,
     description: itemName,
@@ -61,8 +58,8 @@ export const bookDelivery = async (
   }
   const deliveryOrderResponse = await createDeliveryOrder(
     secrets,
-    pickupAddress,
-    dropoffAddress,
+    fromAddress,
+    toAddress,
     pickupContact,
     dropoffContact,
     CUSTOMER_SUPPORT_INFO,
@@ -72,7 +69,7 @@ export const bookDelivery = async (
   if (deliveryOrderResponse.status === 'ok') {
     const { response } = deliveryOrderResponse
     return {
-      status: 'ok',
+      status: 'ok' as const,
       fee: response.price,
 
       orderId: response.wolt_order_reference_id,
