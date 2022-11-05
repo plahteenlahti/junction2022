@@ -2,7 +2,8 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts src",
-    "build": "tsc --watch",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
     "emulators": "firebase emulators:start --only functions,firestore",
     "logs": "firebase functions:log"
   },
@@ -13,7 +14,7 @@
   "dependencies": {
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^4.0.2",
-    "got": "^12.5.2"
+    "got": "11.8.5"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.12.0",

@@ -9,4 +9,4 @@ typings/
 node_modules/
 
 .secret.local
- 
+*-debug.log

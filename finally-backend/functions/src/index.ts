@@ -67,6 +67,8 @@ app.get('/mock-wolt', async (req, res) => {
     merchantId: woltMerchantId.value(),
   }
 
+  console.log(secrets.merchantId)
+
   await mockPreviewDelivery(secrets)
 
   res.send('done!')

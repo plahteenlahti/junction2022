@@ -1,7 +1,7 @@
 import { Wolt, WoltSecrets } from './types'
 import got, { HTTPError } from 'got'
 
-const BASE_URL = `https://daas-public-api.development.dev.woltapi.com/merchants/`
+const BASE_URL = `https://daas-public-api.development.dev.woltapi.com/merchants`
 
 export const getDeliveryFee = async (
   secrets: WoltSecrets,
