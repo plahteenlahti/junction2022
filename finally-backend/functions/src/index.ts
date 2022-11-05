@@ -4,8 +4,7 @@ import * as express from 'express'
 import * as functions from 'firebase-functions'
 
 import { defineSecret } from 'firebase-functions/params'
-import { mockPreviewDelivery } from './wolt/mock'
-import { WoltSecrets } from './wolt/types'
+import { mockWoltPreviewDelivery } from './routes/delivery'
 
 const woltApiToken = defineSecret('WOLT_API_TOKEN')
 const woltMerchantId = defineSecret('WOLT_MERCHANT_ID')
@@ -61,18 +60,7 @@ app.get('/helloworld', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/mock-wolt', async (req, res) => {
-  const secrets: WoltSecrets = {
-    apiToken: woltApiToken.value(),
-    merchantId: woltMerchantId.value(),
-  }
-
-  console.log(secrets.merchantId)
-
-  await mockPreviewDelivery(secrets)
-
-  res.send('done!')
-})
+app.get('/mock-wolt', mockWoltPreviewDelivery)
 
 // Expose Express API as a single Cloud Function:
 export const orders = functions
