@@ -12,6 +12,8 @@ import { extendTheme } from '@chakra-ui/react'
 import { Navigation } from './components/Navigation'
 import { FirebaseInstanceProvider } from './FirebaseInstance'
 import './index.css'
+import { TabBar } from './components/TabBar'
+import { History } from './routes/history'
 
 // 3. extend the theme
 const theme = extendTheme({
@@ -79,9 +81,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Send />} />
+              <Route path="/history" element={<History />} />
               <Route path="/order" element={<Order />} />
               <Route path="/order-confirmed" element={<OrderConfirmed />} />
             </Routes>
+            <TabBar />
           </BrowserRouter>
         </ChakraProvider>
       </FirebaseInstanceProvider>

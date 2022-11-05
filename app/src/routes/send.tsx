@@ -2,12 +2,12 @@ import { AtSignIcon } from '@chakra-ui/icons'
 import {
   Box,
   Button,
-  Checkbox,
   Container,
   Input,
   InputGroup,
   InputLeftElement,
   Spinner,
+  Switch,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
@@ -37,8 +37,8 @@ const userFound = (data: DocumentData[]): Participant | null => {
 }
 
 export const Send = () => {
+  // userID to search
   const [userID, setUserID] = useState('')
-
   const { data, status } = useCollection(
     FirebaseCollection.Users,
     where('phone', '==', userID)
@@ -121,10 +121,11 @@ export const Send = () => {
           flexDirection="row"
           display="flex"
           marginBottom={4}
+          alignItems="center"
           justifyContent="center">
-          <Checkbox colorScheme={useColorModeValue('brand', 'brandWhite')}>
+          <Switch colorScheme={useColorModeValue('brand', 'brandWhite')}>
             Receiver is paying for the delivery
-          </Checkbox>
+          </Switch>
         </Box>
         <Button
           size="lg"
