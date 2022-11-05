@@ -4,7 +4,9 @@ import ramen from '../assets/ramen.jpg'
 export const Recipes = () => {
   return (
     <Container maxW="7xl">
-      <Heading marginBottom="12">Explore Recipes</Heading>
+      <Heading marginTop="12" marginBottom="12">
+        Explore Recipes
+      </Heading>
 
       <Box
         height="sm"
