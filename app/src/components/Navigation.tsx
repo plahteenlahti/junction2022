@@ -40,35 +40,20 @@ export const Navigation = () => {
     <>
       <Box bg={useColorModeValue('white.100', 'gray.800')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Box>
-            <Text>ShIpMyPaNtS</Text>
-          </Box>
-
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={7}>
-              <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
-
+          <Flex>
+            <Stack direction={'row'}>
               <Menu>
                 <MenuButton
                   as={Button}
                   rounded={'full'}
                   variant={'link'}
-                  cursor={'pointer'}
-                  minW={0}>
-                  <Avatar
-                    size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
-                  />
+                  cursor={'pointer'}>
+                  <Avatar size={'sm'} name="Perttu Lähteenlahti" />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
                   <br />
                   <Center>
-                    <Avatar
-                      size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
-                    />
+                    <Avatar size={'2xl'} name="Perttu Lähteenlahti" />
                   </Center>
                   <br />
                   <Center>
