@@ -1,6 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react'
-
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -56,7 +54,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
               <Route path="/" element={<Send />} />
               <Route path="/order" element={<Order />} />
               <Route path="/order-confirmed" element={<OrderConfirmed />} />
-              <Route path="/recipes" element={<Recipes />} />
             </Routes>
           </BrowserRouter>
         </ChakraProvider>
