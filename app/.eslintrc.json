@@ -2,6 +2,6 @@
   "env": {
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "rules": {}
 }

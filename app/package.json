@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.3.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -26,8 +27,10 @@
     "@types/react-dom": "^18.0.7",
     "@vitejs/plugin-react": "^2.2.0",
     "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
     "prettier": "^2.7.1",
     "typescript": "^4.6.4",
     "vite": "^3.2.0"

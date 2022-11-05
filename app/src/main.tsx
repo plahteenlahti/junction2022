@@ -1,17 +1,31 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Start } from "./routes/start";
-import { Order } from "./routes/order";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './index.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Start } from './routes/start'
+import { Order } from './routes/order'
 import { ChakraProvider } from '@chakra-ui/react'
-import { OrderConfirmed } from "./routes/order-confirmed";
-import { Recipes } from "./routes/recipes";
+import { OrderConfirmed } from './routes/order-confirmed'
+import { Recipes } from './routes/recipes'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+import { Navigation } from './components/Navigation'
+
+const config: ThemeConfig = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false
+}
+
+// 3. extend the theme
+const theme = extendTheme({ config })
+
+export default theme
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <Navigation />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
@@ -23,4 +37,4 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>
-);
+)

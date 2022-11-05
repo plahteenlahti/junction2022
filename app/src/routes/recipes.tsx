@@ -8,6 +8,10 @@ export const Recipes = () => {
       <Heading marginTop="12" marginBottom="12">
         Explore Recipes
       </Heading>
+      <Box rounded="xl" padding="3" backgroundColor="blackAlpha.800">
+        <Text color="whiteAlpha.800">I want to ship my self instead</Text>
+        <Text>I want to ship my self instead</Text>
+      </Box>
       <Recipe />
       <Recipe />
       <Recipe />
