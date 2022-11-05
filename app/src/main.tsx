@@ -1,6 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react'
-
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -9,7 +7,6 @@ import { Order } from './routes/order'
 import { OrderConfirmed } from './routes/order-confirmed'
 import { Send } from './routes/send'
 import { FirebaseAppProvider } from 'reactfire';
-
 import { extendTheme } from '@chakra-ui/react'
 import { Navigation } from './components/Navigation'
 import { FirebaseInstanceProvider } from './FirebaseInstance'
@@ -56,7 +53,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
               <Route path="/" element={<Send />} />
               <Route path="/order" element={<Order />} />
               <Route path="/order-confirmed" element={<OrderConfirmed />} />
-              <Route path="/recipes" element={<Recipes />} />
             </Routes>
           </BrowserRouter>
         </ChakraProvider>
