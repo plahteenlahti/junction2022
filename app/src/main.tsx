@@ -48,9 +48,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Navigation />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<App />} />
+              <Route path="/" element={<Send />} />
               <Route path="/order" element={<Order />} />
-              <Route path="/start" element={<Start />} />
               <Route path="/order-confirmed" element={<OrderConfirmed />} />
               <Route path="/recipes" element={<Recipes />} />
             </Routes>
