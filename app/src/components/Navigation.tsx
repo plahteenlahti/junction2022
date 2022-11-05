@@ -12,16 +12,15 @@ import {
   MenuList,
   Stack,
   useColorMode,
-  useColorModeValue,
-  useDisclosure
+  useColorModeValue
 } from '@chakra-ui/react'
 
 export const Navigation = () => {
   const { colorMode, toggleColorMode } = useColorMode()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
-      <Box bg={useColorModeValue('white.100', 'gray.800')} px={4}>
+      <Box bg={useColorModeValue('white.100', 'brand')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Flex>
             <Stack direction={'row'}>

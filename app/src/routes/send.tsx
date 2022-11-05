@@ -67,7 +67,10 @@ export const Send = () => {
         flexDirection="column"
         paddingX={3}
         justifyContent="flex-end">
-        <Button disabled size="lg" colorScheme="blackAlpha" width="100%">
+        <Button
+          size="lg"
+          colorScheme={useColorModeValue('brand', 'brandWhite')}
+          width="100%">
           Send
         </Button>
       </Box>
