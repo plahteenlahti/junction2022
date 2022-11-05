@@ -1,5 +1,6 @@
 import { Box, Container, Heading, Text } from '@chakra-ui/react'
 import ramen from '../assets/ramen.jpg'
+import { Recipe } from '../components/Recipe'
 
 export const Recipes = () => {
   return (
@@ -7,24 +8,9 @@ export const Recipes = () => {
       <Heading marginTop="12" marginBottom="12">
         Explore Recipes
       </Heading>
-
-      <Box
-        height="sm"
-        backgroundImage={ramen}
-        backgroundPosition="center"
-        backgroundSize="cover"
-        backgroundRepeat="no-repeat"
-        paddingBottom="3"
-        rounded="2xl">
-        <Box
-          backdropFilter="auto"
-          rounded="xl"
-          padding="12px"
-          backdropBlur="md">
-          <Text>Spicy Ramen with Mixin Sea Food</Text>
-          <Text size="">Order now you dirty peasant</Text>
-        </Box>
-      </Box>
+      <Recipe />
+      <Recipe />
+      <Recipe />
     </Container>
   )
 }
