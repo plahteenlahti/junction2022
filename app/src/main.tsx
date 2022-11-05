@@ -7,6 +7,7 @@ import { Start } from "./routes/start";
 import { Order } from "./routes/order";
 import { ChakraProvider } from '@chakra-ui/react'
 import { OrderConfirmed } from "./routes/order-confirmed";
+import { Recipes } from "./routes/recipes";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Route path="/order" element={<Order />} />
           <Route path="/start" element={<Start />} />
           <Route path="/order-confirmed" element={<OrderConfirmed />} />
+          <Route path="/recipes" element={<Recipes />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
