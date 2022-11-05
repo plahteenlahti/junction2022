@@ -14,6 +14,7 @@ import { FirebaseInstanceProvider } from './FirebaseInstance'
 import './index.css'
 import { TabBar } from './components/TabBar'
 import { History } from './routes/history'
+import { Login } from './routes/login'
 
 // 3. extend the theme
 const theme = extendTheme({
@@ -80,9 +81,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <Navigation />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Send />} />
-              <Route path="/history" element={<History />} />
+              <Route path="/" element={<Login />} />
+              <Route path="/send" element={<Send />} />
               <Route path="/order" element={<Order />} />
+              <Route path="/history" element={<History />} />
               <Route path="/order-confirmed" element={<OrderConfirmed />} />
             </Routes>
             <TabBar />

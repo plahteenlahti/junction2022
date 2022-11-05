@@ -1,8 +1,8 @@
-import { QuestionIcon } from '@chakra-ui/icons'
+import { EditIcon, QuestionIcon } from '@chakra-ui/icons'
 import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 
 type Props = {
-  address: {
+  address?: {
     city: string
     country: string
     line1: string
@@ -11,20 +11,21 @@ type Props = {
   }
   email: string
   phone: string
+  onEdit?: () => void
+  editable?: boolean
 }
 
 export const ParticipantCard = ({
-  address: { city, country, line1, line2, postcode },
-  phone
+  address,
+  phone,
+  onEdit,
+  editable = false
 }: Props) => {
+  const fontColor = useColorModeValue('blackAlpha.700', 'whiteAlpha.600')
+  const fontColor2 = useColorModeValue('blackAlpha.600', 'whiteAlpha.600')
+
   return (
     <Box boxShadow="md" padding={3} rounded="md">
-      <Text
-        fontSize="xs"
-        color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
-        marginBottom="2">
-        {country}
-      </Text>
       <Flex flexDirection="row" alignItems="center">
         <QuestionIcon color="gray.300" marginRight="2.5" />
         <Box>
@@ -33,17 +34,27 @@ export const ParticipantCard = ({
             color={useColorModeValue('blackAlpha.800', 'whiteAlpha.800')}>
             {phone}
           </Text>
-          <Text
-            fontSize="sm"
-            color={useColorModeValue('blackAlpha.700', 'whiteAlpha.600')}>
-            {city},{postcode}
-          </Text>
-          <Text
-            fontSize="sm"
-            color={useColorModeValue('blackAlpha.700', 'whiteAlpha.600')}>
-            {line1},{line2}
-          </Text>
+          {address && (
+            <>
+              <Text fontSize="sm" color={fontColor}>
+                {address.city}, {address.postcode}
+              </Text>
+              <Text fontSize="sm" color={fontColor}>
+                {address.line1}, {address.line2}
+              </Text>
+              <Text fontSize="xs" color={fontColor2} marginBottom="2">
+                {address.country}
+              </Text>
+            </>
+          )}
         </Box>
+        {editable && (
+          <EditIcon
+            onClick={() => onEdit?.()}
+            color="gray.300"
+            marginRight="2.5"
+          />
+        )}
       </Flex>
     </Box>
   )
