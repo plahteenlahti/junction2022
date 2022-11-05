@@ -49,7 +49,7 @@ export const confirmDelivery: RequestHandler = async (req, res) => {
     secrets,
     sender,
     recipient,
-    null, // todo
+    null,
     delivery.description
   )
 
@@ -62,6 +62,7 @@ export const confirmDelivery: RequestHandler = async (req, res) => {
     deliver_eta: response.dropoffEta!,
     woltDetails: {
       orderId: response.orderId!,
+      trackingUrl: response.trackingUrl!,
       feeAmount: response.fee!.amount,
       feeCurrency: response.fee!.currency,
     },
