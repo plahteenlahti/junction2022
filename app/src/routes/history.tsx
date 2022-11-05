@@ -28,7 +28,7 @@ export const History = () => {
 
   return (
     <Container maxW="7xl">
-      <Heading marginBottom={2}>History</Heading>
+      <Heading marginBottom={2}>Deliveries</Heading>
       <Text
         fontSize="sm"
         color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
@@ -36,8 +36,7 @@ export const History = () => {
       </Text>
 
       {received?.map((item, key) => (
-        <Box
-          key={`${item.receiver_id}_${item.deliver_time}_${item.est_deliver_time}_${key}`}>
+        <Box key={`${item.receiver_id}_${item.pickup_eta}_${key}`}>
           <Code whiteSpace="pre">{JSON.stringify(item, undefined, 4)}</Code>
         </Box>
       ))}
