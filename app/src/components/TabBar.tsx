@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 export const TabBar = () => {
   const { pathname } = useLocation()
   const auth = getAuth()
-  if (!auth.currentUser) return
+  if (!auth.currentUser) return null
 
   return (
     <Box

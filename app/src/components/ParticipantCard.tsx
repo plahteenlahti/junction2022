@@ -8,9 +8,9 @@ type Props = {
     line1?: string | null
     line2?: string | null
     postcode?: string | null
-  }
-  email: string
-  phone: string
+  } | null
+  email?: string | null
+  phone?: string | null
   onEdit?: () => void
   editable?: boolean
 }
