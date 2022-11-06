@@ -140,7 +140,7 @@ export const Send = () => {
           {user.data?.address && !editMode && (
             <ParticipantCard
               email="perttu@lahteenlahti.com"
-              phone="0503134326"
+              phone={user.data.phone}
               address={{
                 country: user.data?.address?.country ?? '',
                 city: user.data?.address?.city ?? '',
