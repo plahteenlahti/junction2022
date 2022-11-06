@@ -25,6 +25,7 @@ import {
 import { FormEventHandler, useEffect, useState } from 'react'
 import AnimatedCheckmark, { MODES } from 'react-animated-checkmark'
 import { useNavigate } from 'react-router-dom'
+import PhoneNumberInput from '../components/PhoneNumberInput'
 
 declare global {
   const grecaptcha: any // Amazing
@@ -126,7 +127,7 @@ export const Login = () => {
               color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
               Login using your phone number
             </Text>
-            <InputGroup>
+            {/* <InputGroup>
               <InputLeftElement
                 pointerEvents="none"
                 children={<PhoneIcon color="gray.300" />}
@@ -137,7 +138,12 @@ export const Login = () => {
                 type="text"
                 placeholder="Phone number"
               />
-            </InputGroup>
+            </InputGroup> */}
+            <PhoneNumberInput
+              value={phoneNumber}
+              onChange={setPhoneNumber}
+              placeholder="Phone number"
+            />
             <Button
               id="sign-in-button"
               marginTop={6}

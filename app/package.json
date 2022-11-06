@@ -1,52 +1,55 @@
 {
-  "name": "app",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint --ext .js,.ts src"
-  },
-  "dependencies": {
-    "@chakra-ui/icons": "^2.0.11",
-    "@chakra-ui/react": "^2.3.7",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@fontsource/inter": "^4.5.14",
-    "@tanstack/react-query": "4.14.3",
-    "firebase": "^9.13.0",
-    "framer-motion": "^7.6.4",
-    "luxon": "^3.1.0",
-    "mapbox-gl": "2.10.0",
-    "react": "^18.2.0",
-    "react-animated-checkmark": "^1.0.3",
-    "react-dom": "^18.2.0",
-    "react-google-autocomplete": "^2.7.0",
-    "react-map-gl": "^7.0.19",
-    "react-router-dom": "^6.4.3",
-    "react-shared-element-transition": "^3.0.0",
-    "reactfire": "^4.2.2"
-  },
-  "devDependencies": {
-    "@types/luxon": "^3.1.0",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
-    "@typescript-eslint/eslint-plugin": "^5.42.0",
-    "@vitejs/plugin-react": "^2.2.0",
-    "eslint": "^8.26.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.10",
-    "prettier": "^2.7.1",
-    "typescript": "^4.6.4",
-    "vite": "^3.2.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  }
+    "name": "app",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint --ext .js,.ts src"
+    },
+    "dependencies": {
+        "@chakra-ui/icons": "^2.0.11",
+        "@chakra-ui/react": "^2.3.7",
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@fontsource/inter": "^4.5.14",
+        "@tanstack/react-query": "4.14.3",
+        "country-calling-code": "^0.0.3",
+        "firebase": "^9.13.0",
+        "framer-motion": "^7.6.4",
+        "luxon": "^3.1.0",
+        "mapbox-gl": "2.10.0",
+        "react": "^18.2.0",
+        "react-animated-checkmark": "^1.0.3",
+        "react-dom": "^18.2.0",
+        "react-google-autocomplete": "^2.7.0",
+        "react-map-gl": "^7.0.19",
+        "react-router-dom": "^6.4.3",
+        "react-shared-element-transition": "^3.0.0",
+        "react-world-flags": "^1.5.1",
+        "reactfire": "^4.2.2"
+    },
+    "devDependencies": {
+        "@types/luxon": "^3.1.0",
+        "@types/react": "^18.0.22",
+        "@types/react-dom": "^18.0.7",
+        "@types/react-world-flags": "^1.4.2",
+        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@vitejs/plugin-react": "^2.2.0",
+        "eslint": "^8.26.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-react-app": "^7.0.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.10",
+        "prettier": "^2.7.1",
+        "typescript": "^4.6.4",
+        "vite": "^3.2.0"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app"
+        ]
+    }
 }
