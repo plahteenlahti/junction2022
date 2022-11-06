@@ -99,7 +99,6 @@ export const Send = () => {
     onPlaceSelected: place => {
       const address = parseAddress(place.address_components)
       writeData({
-        name: 'Perttu',
         phone: auth.currentUser?.phoneNumber,
         address: {
           country: address.country,
@@ -117,6 +116,7 @@ export const Send = () => {
 
   const [sourceAddressSearch, setSourceAddressSearch] = useState('')
   const [editMode, setEditMode] = useState(false)
+
   return (
     <Container maxW="sm">
       <Box
@@ -132,7 +132,7 @@ export const Send = () => {
             Sending from
           </Text>
 
-          {!editMode && (
+          {user.data?.address && !editMode && (
             <ParticipantCard
               email="perttu@lahteenlahti.com"
               phone="0503134326"
@@ -150,9 +150,11 @@ export const Send = () => {
 
           <InputGroup
             style={
-              !user.data?.address || !editMode
-                ? { visibility: 'hidden' }
-                : {} /** Need to keep this rendered because we can't lose the ref */
+              !user.data?.address || editMode
+                ? {}
+                : {
+                    visibility: 'hidden'
+                  } /** Need to keep this rendered because we can't lose the ref */
             }>
             <InputLeftElement
               pointerEvents="none"
