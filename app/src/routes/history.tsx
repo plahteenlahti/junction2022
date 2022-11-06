@@ -56,7 +56,7 @@ const formatTime = (timeString: string) => {
   return time.toLocaleString(DateTime.TIME_SIMPLE)
 }
 
-const getItem = (d: Delivery, userId: string) => {
+const getItem = (d: Delivery, userId: string, borderColor: string) => {
   const sent = d.sender_id === userId
   const pickupEta = d.pickup_eta ? formatTime(d.pickup_eta) : undefined
   const dropoffEta = d.deliver_eta ? formatTime(d.deliver_eta) : undefined
@@ -70,14 +70,10 @@ const getItem = (d: Delivery, userId: string) => {
       py={4}
       borderWidth={1}
       borderRadius={3}
-      borderColor={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+      borderColor={borderColor}>
       {sent ? <ArrowUpIcon /> : <ArrowDownIcon />}
       <Text fontSize="sm">{d.description}</Text>
-      <Text
-        flex={1}
-        textAlign="end"
-        fontSize="xs"
-        color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+      <Text flex={1} textAlign="end" fontSize="xs" color={borderColor}>
         {getDeliveryStatusText(
           d.status,
           sent ? 'sending' : 'receiving',
@@ -118,6 +114,8 @@ export const History = () => {
     where('sender_id', '==', userId)
   )
 
+  const borderColor = useColorModeValue('blackAlpha.600', 'whiteAlpha.600')
+
   const loading = !sent || !received
 
   const allData = (received ?? []).concat(sent ?? [])
@@ -135,7 +133,7 @@ export const History = () => {
       {!!loading && <Skeleton height="400px" />}
 
       {!loading && !!allData.length && (
-        <Stack>{allData.map(d => getItem(d, userId))}</Stack>
+        <Stack>{allData.map(d => getItem(d, userId, borderColor))}</Stack>
       )}
 
       {!loading && !allData.length && (

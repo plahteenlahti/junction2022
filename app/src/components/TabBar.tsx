@@ -7,6 +7,8 @@ export const TabBar = () => {
   const { pathname } = useLocation()
   const auth = getAuth()
 
+  const borderColor = useColorModeValue('gray.100', 'gray.900')
+
   if (!auth.currentUser) return null
 
   return (
@@ -18,7 +20,7 @@ export const TabBar = () => {
       paddingX={3}
       paddingY={6}
       borderTop="1px"
-      borderColor={useColorModeValue('gray.100', 'gray.900')}
+      borderColor={borderColor}
       display="flex"
       flexDirection="row">
       <Box flex="1">

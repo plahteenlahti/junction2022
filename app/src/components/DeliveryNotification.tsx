@@ -82,6 +82,7 @@ export const DeliveryNotification = () => {
         status: 'accepted'
       }
     ).then(() => {
+      console.log('Posting to wolt')
       ky.post(
         'https://europe-west3-ship-me-fresh.cloudfunctions.net/orders/confirm/' +
           deliveryRequest.id

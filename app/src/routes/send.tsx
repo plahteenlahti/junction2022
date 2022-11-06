@@ -114,6 +114,7 @@ export const Send = () => {
 
   const [sourceAddressSearch, setSourceAddressSearch] = useState('')
   const [editMode, setEditMode] = useState(false)
+  const lightTextColor = useColorModeValue('blackAlpha.600', 'whiteAlpha.600')
 
   const onSend = () => {
     if (!receiver) return
@@ -128,10 +129,7 @@ export const Send = () => {
         alignItems="center"
         flexDirection="column">
         <Box minWidth="sm" paddingX={3} marginTop={6}>
-          <Text
-            marginBottom={2}
-            fontSize="xs"
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+          <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
             Sending from
           </Text>
 
@@ -174,10 +172,7 @@ export const Send = () => {
         </Box>
 
         <Box minWidth="sm" maxW="" paddingX={3} marginTop={6}>
-          <Text
-            marginBottom={2}
-            fontSize="xs"
-            color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+          <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
             Deliver to
           </Text>
 
