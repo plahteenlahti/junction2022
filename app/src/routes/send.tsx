@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Container,
+  Heading,
   Input,
   InputGroup,
   InputLeftElement,
@@ -128,6 +129,9 @@ export const Send = () => {
         justifyContent="center"
         alignItems="center"
         flexDirection="column">
+        <Box width="100%">
+          <Heading marginY={3}>Get sending</Heading>
+        </Box>
         <Box minWidth="sm" paddingX={3} marginTop={6}>
           <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
             Sending from

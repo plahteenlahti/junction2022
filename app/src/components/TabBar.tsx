@@ -32,12 +32,20 @@ export const TabBar = () => {
             justifyContent="center"
             alignItems="center">
             <StarIcon
-              color={pathname === '/' ? 'gray.500' : 'CaptionText'}
+              color={
+                pathname === '/' || pathname === '/send'
+                  ? 'gray.500'
+                  : 'CaptionText'
+              }
               marginBottom="1"
             />
             <Text
               fontSize="xs"
-              color={pathname === '/' ? 'gray.500' : 'CaptionText'}>
+              color={
+                pathname === '/' || pathname === '/send'
+                  ? 'gray.500'
+                  : 'CaptionText'
+              }>
               Send
             </Text>
           </Box>
