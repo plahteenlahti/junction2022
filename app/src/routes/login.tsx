@@ -116,8 +116,8 @@ export const Login = () => {
 
   if (authStageInfo.step === 'init' || authStageInfo.step === 'phone') {
     return (
-      <form onSubmit={sendCode}>
-        <Container maxW="7xl">
+      <Container maxW="7xl" height="100%">
+        <form onSubmit={sendCode}>
           <Heading marginY={6}>Ship My Pants</Heading>
           <Box width="100%">
             <Text
@@ -145,11 +145,11 @@ export const Login = () => {
               colorScheme={useColorModeValue('brand', 'brandWhite')}
               width="100%"
               type="submit">
-              Send
+              Login
             </Button>
           </Box>
-        </Container>
-      </form>
+        </form>
+      </Container>
     )
   }
 

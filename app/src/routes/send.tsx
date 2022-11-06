@@ -97,7 +97,6 @@ export const Send = () => {
   const { ref }: { ref: RefObject<HTMLInputElement> } = usePlacesWidget({
     apiKey: 'AIzaSyBQzFH-bsHHN7xZWQC0f-vp2XRqN8mEY0U',
     onPlaceSelected: place => {
-      console.log({ place })
       const address = parseAddress(place.address_components)
       writeData({
         name: 'Perttu',
@@ -109,6 +108,7 @@ export const Send = () => {
           line1: `${address.route} ${address.street_number}`
         }
       })
+      setEditMode(false)
     },
     options: {
       types: ['address']
@@ -116,7 +116,7 @@ export const Send = () => {
   })
 
   const [sourceAddressSearch, setSourceAddressSearch] = useState('')
-
+  const [editMode, setEditMode] = useState(false)
   return (
     <Container maxW="sm">
       <Box
@@ -132,23 +132,25 @@ export const Send = () => {
             Sending from
           </Text>
 
-          <ParticipantCard
-            email="perttu@lahteenlahti.com"
-            phone="0503134326"
-            address={{
-              country: user.data?.address?.country,
-              city: user.data?.address?.city,
-              postcode: user.data?.address?.postcode,
-              line1: user.data?.address?.line1,
-              line2: user.data?.address?.line2
-            }}
-            editable={!user.data?.address}
-            onEdit={() => {}}
-          />
+          {!editMode && (
+            <ParticipantCard
+              email="perttu@lahteenlahti.com"
+              phone="0503134326"
+              address={{
+                country: user.data?.address?.country,
+                city: user.data?.address?.city,
+                postcode: user.data?.address?.postcode,
+                line1: user.data?.address?.line1,
+                line2: user.data?.address?.line2
+              }}
+              editable={!!user.data?.address}
+              onEdit={() => setEditMode(!editMode)}
+            />
+          )}
 
           <InputGroup
             style={
-              !user.data?.address
+              !user.data?.address || !editMode
                 ? { visibility: 'hidden' }
                 : {} /** Need to keep this rendered because we can't lose the ref */
             }>

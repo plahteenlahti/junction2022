@@ -26,8 +26,7 @@ export const ParticipantCard = ({
 
   return (
     <Box boxShadow="md" padding={3} rounded="md">
-      <Flex flexDirection="row" alignItems="center">
-        <QuestionIcon color="gray.300" marginRight="2.5" />
+      <Flex flexDirection="row" justifyContent="space-between">
         <Box>
           <Text
             fontSize="sm"
@@ -51,7 +50,7 @@ export const ParticipantCard = ({
         {editable && (
           <EditIcon
             onClick={() => onEdit?.()}
-            color="gray.300"
+            color="gray.600"
             marginRight="2.5"
           />
         )}
