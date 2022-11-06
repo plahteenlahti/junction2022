@@ -16,6 +16,7 @@ import { TabBar } from './components/TabBar'
 import { History } from './routes/history'
 import { Login } from './routes/login'
 import { DeliveryNotification } from './components/DeliveryNotification'
+import { BehindAuth } from './components/BehindAuth'
 
 // 3. extend the theme
 const theme = extendTheme({
@@ -79,18 +80,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <FirebaseInstanceProvider>
         <ChakraProvider theme={theme}>
-          <Navigation />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/send" element={<Send />} />
-              <Route path="/order" element={<Order />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/order-confirmed" element={<OrderConfirmed />} />
-            </Routes>
-            <DeliveryNotification />
-            <TabBar />
-          </BrowserRouter>
+          <BehindAuth />
         </ChakraProvider>
       </FirebaseInstanceProvider>
     </FirebaseAppProvider>

@@ -1,15 +1,8 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {
-  Avatar,
   Box,
   Button,
-  Center,
   Flex,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
   Stack,
   useColorMode,
   useColorModeValue

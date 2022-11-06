@@ -1,4 +1,4 @@
-import { EditIcon, QuestionIcon } from '@chakra-ui/icons'
+import { EditIcon } from '@chakra-ui/icons'
 import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 
 type Props = {

@@ -106,8 +106,6 @@ export const History = () => {
     where('sender_id', '==', userId)
   )
 
-  console.log(received)
-
   const loading = !sent || !received
 
   const allData = (received ?? []).concat(sent ?? [])

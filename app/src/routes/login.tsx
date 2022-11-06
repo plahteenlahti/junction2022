@@ -17,9 +17,11 @@ import {
   VStack
 } from '@chakra-ui/react'
 import {
+  browserSessionPersistence,
   ConfirmationResult,
   getAuth,
   RecaptchaVerifier,
+  setPersistence,
   signInWithPhoneNumber
 } from 'firebase/auth'
 import { FormEventHandler, useEffect, useState } from 'react'
@@ -33,6 +35,7 @@ declare global {
 
 export const Login = () => {
   const auth = getAuth()
+  setPersistence(auth, browserSessionPersistence)
 
   const [authStageInfo, setAuthStageInfo] = useState<
     | { step: 'init' }
