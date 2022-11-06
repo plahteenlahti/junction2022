@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { getAuth } from 'firebase/auth'
 import { doc, getDoc, updateDoc, where } from 'firebase/firestore'
-import got from 'got'
+import ky from 'ky'
 import { useEffect, useState } from 'react'
 import { useFirestore } from 'reactfire'
 import { FirebaseCollection } from '../db/collections'
@@ -82,7 +82,7 @@ export const DeliveryNotification = () => {
         status: 'accepted'
       }
     ).then(() => {
-      got.post(
+      ky.post(
         'https://europe-west3-ship-me-fresh.cloudfunctions.net/orders/confirm/' +
           deliveryRequest.id
       )
