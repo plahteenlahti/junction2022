@@ -47,6 +47,7 @@ export const Login = () => {
   const navigate = useNavigate()
 
   const [phoneNumber, setPhoneNumber] = useState('+421940837792')
+  const [phoneNumberLoading, setPhoneNumberLoading] = useState(false)
   const [loaderState, setLoaderState] = useState(MODES.LOADING)
   useEffect(() => {
     let timeout: null | NodeJS.Timeout = null
@@ -68,6 +69,7 @@ export const Login = () => {
   const el = document.getElementById('sign-in-button')
   useEffect(() => {
     if (!el) return
+    console.log('el', 'setting')
     setAuthStageInfo({
       step: 'phone',
       verifier: new RecaptchaVerifier(
@@ -85,6 +87,7 @@ export const Login = () => {
     if (authStageInfo.step !== 'phone') {
       return
     }
+    setPhoneNumberLoading(true)
     signInWithPhoneNumber(auth, phoneNumber, authStageInfo.verifier)
       .then(confirmationResult => {
         // SMS sent. Prompt user to type the code from the message, then sign the
@@ -94,12 +97,16 @@ export const Login = () => {
           confirmationCallback: confirmationResult
         })
       })
-      .catch(() => {
+      .catch(error => {
         authStageInfo.verifier.render().then(widgetId => {
           // eslint-disable-next-line no-undef
           grecaptcha.reset(widgetId)
         })
+        console.log(error)
         // Error; SMS not sent
+      })
+      .finally(() => {
+        setPhoneNumberLoading(false)
       })
   }
 
@@ -134,6 +141,7 @@ export const Login = () => {
             <PhoneNumberInput
               value={phoneNumber}
               onChange={setPhoneNumber}
+              disabled={phoneNumberLoading}
               placeholder="Phone number"
             />
             <Button
@@ -142,11 +150,23 @@ export const Login = () => {
               size="lg"
               colorScheme={useColorModeValue('brand', 'brandWhite')}
               width="100%"
+              visibility={!phoneNumberLoading ? 'visible' : 'hidden'}
+              disabled={phoneNumberLoading}
               type="submit">
               Login
             </Button>
           </Box>
         </form>
+        {phoneNumberLoading && (
+          <Container
+            maxW="7xl"
+            height="3xl"
+            alignContent="center"
+            display="flex"
+            justifyContent="center">
+            <AnimatedCheckmark mode={loaderState} />
+          </Container>
+        )}
       </Container>
     )
   }

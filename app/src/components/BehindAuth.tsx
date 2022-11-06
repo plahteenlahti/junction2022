@@ -5,8 +5,8 @@ import { AuthProvider, useAuth, useFirebaseApp } from 'reactfire'
 import { History } from '../routes/history'
 import { Login } from '../routes/login'
 import { Order } from '../routes/order'
-import { OrderConfirmed } from '../routes/order-confirmed'
 import { Send } from '../routes/send'
+import SendConfirm from '../routes/send-confirm'
 import { DeliveryNotification } from './DeliveryNotification'
 import { Navigation } from './Navigation'
 import { TabBar } from './TabBar'
@@ -64,7 +64,7 @@ const ExtraLevel = () => {
           <Route path="/send" element={<Send />} />
           <Route path="/order" element={<Order />} />
           <Route path="/history" element={<History />} />
-          <Route path="/order-confirmed" element={<OrderConfirmed />} />
+          <Route path="/send/confirm" element={<SendConfirm />} />
         </>
       ) : (
         <Route path="/" element={<Login />} />

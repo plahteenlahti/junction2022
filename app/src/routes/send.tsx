@@ -33,6 +33,7 @@ type Participant = {
   }
   email: string
   phone: string
+  id: string
 }
 
 const receiverFound = (data: User[] | undefined): Participant | null => {
@@ -89,22 +90,19 @@ export const Send = () => {
     `${auth.currentUser?.uid}`
   )
 
-  const writeData = useWriteData<User>(
-    FirebaseCollection.Users,
-    `${auth.currentUser?.uid}`
-  )
+  const writeData = useWriteData<User>(FirebaseCollection.Users)
 
   const { ref }: { ref: RefObject<HTMLInputElement> } = usePlacesWidget({
     apiKey: 'AIzaSyBQzFH-bsHHN7xZWQC0f-vp2XRqN8mEY0U',
     onPlaceSelected: place => {
       const address = parseAddress(place.address_components)
-      writeData({
+      writeData(`${auth.currentUser?.uid}`, {
         phone: auth.currentUser?.phoneNumber,
         address: {
-          country: address.country,
-          city: address.locality,
-          postcode: address.postal_code,
-          line1: `${address.route} ${address.street_number}`
+          country: address.country ?? '',
+          city: address.locality ?? '',
+          postcode: address.postal_code ?? '',
+          line1: `${address.route ?? ''} ${address.street_number ?? ''}`
         }
       })
       setEditMode(false)
@@ -116,6 +114,11 @@ export const Send = () => {
 
   const [sourceAddressSearch, setSourceAddressSearch] = useState('')
   const [editMode, setEditMode] = useState(false)
+
+  const onSend = () => {
+    if (!receiver) return
+    navigate(`send/confirm?receiver_id=${receiver.id}`)
+  }
 
   return (
     <Container maxW="sm">
@@ -137,11 +140,11 @@ export const Send = () => {
               email="perttu@lahteenlahti.com"
               phone="0503134326"
               address={{
-                country: user.data?.address?.country,
-                city: user.data?.address?.city,
-                postcode: user.data?.address?.postcode,
-                line1: user.data?.address?.line1,
-                line2: user.data?.address?.line2
+                country: user.data?.address?.country ?? '',
+                city: user.data?.address?.city ?? '',
+                postcode: user.data?.address?.postcode ?? '',
+                line1: user.data?.address?.line1 ?? '',
+                line2: user.data?.address?.line2 ?? ''
               }}
               editable={!!user.data?.address}
               onEdit={() => setEditMode(!editMode)}
@@ -225,7 +228,8 @@ export const Send = () => {
         <Button
           size="lg"
           colorScheme={useColorModeValue('brand', 'brandWhite')}
-          width="100%">
+          width="100%"
+          onClick={onSend}>
           Send
         </Button>
       </Box>

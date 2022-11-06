@@ -16,12 +16,14 @@ type Props = {
   // eslint-disable-next-line no-unused-vars
   onChange: (_: string) => void
   placeholder: string
+  disabled: boolean
 }
 
 export default function PhoneNumberInput({
   value,
   onChange,
-  placeholder
+  placeholder,
+  disabled
 }: Props) {
   const [number, setNumber] = useState(value || '+358')
   const [selectedCountry, setSelectedCountry] = useState<string | undefined>(
@@ -51,6 +53,7 @@ export default function PhoneNumberInput({
           icon={<></>}
           position="absolute"
           value={selectedCountry}
+          disabled={disabled}
           onChange={onCountryChange}>
           <option value="" />
           {codes.map(country => (
@@ -76,6 +79,7 @@ export default function PhoneNumberInput({
         value={number}
         placeholder={placeholder}
         onChange={onPhoneNumberChange}
+        disabled={disabled}
       />
     </InputGroup>
   )
