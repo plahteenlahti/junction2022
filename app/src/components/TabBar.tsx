@@ -1,9 +1,12 @@
 import { ChatIcon } from '@chakra-ui/icons'
 import { Box, Text, useColorModeValue } from '@chakra-ui/react'
+import { getAuth } from 'firebase/auth'
 import { Link, useLocation } from 'react-router-dom'
 
 export const TabBar = () => {
   const { pathname } = useLocation()
+  const auth = getAuth()
+  if (!auth.currentUser) return
 
   return (
     <Box
@@ -18,7 +21,7 @@ export const TabBar = () => {
       display="flex"
       flexDirection="row">
       <Box flex="1">
-        <Link to="/">
+        <Link to="/send">
           <Box
             flex="1"
             display="flex"
