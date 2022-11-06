@@ -127,7 +127,8 @@ export const History = () => {
         fontSize="sm"
         color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}
         marginBottom={'20px'}>
-        Packages {`you've`} sent and received
+        Packages {`you've`} sent and received. You can open any of order to see
+        their current delivery status.
       </Text>
 
       {!!loading && <Skeleton height="400px" />}

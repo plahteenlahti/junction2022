@@ -134,6 +134,10 @@ export const Send = () => {
         flexDirection="column">
         <Box width="100%">
           <Heading marginY={3}>Get sending</Heading>
+          <Text fontSize={'sm'}>
+            Ready to send packages? Start by selecting your current address and
+            then adding the phonenumber of the receiver.
+          </Text>
         </Box>
         <Box minWidth="sm" paddingX={3} marginTop={6}>
           <Text marginBottom={2} fontSize="xs" color={lightTextColor}>

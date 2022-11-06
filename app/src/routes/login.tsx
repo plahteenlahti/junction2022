@@ -132,7 +132,11 @@ export const Login = () => {
     return (
       <Container maxW="7xl" height="100%">
         <form onSubmit={sendCode}>
-          <Heading marginY={6}>Ship My Pants</Heading>
+          <Heading marginY={3}>Ship My Pants</Heading>
+          <Text fontSize="sm" marginBottom={12}>
+            Same day delivery with less than six clicks. Send packages instantly
+            and easily with just the recipients phone number.
+          </Text>
           <Box width="100%">
             <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
               Login using your phone number

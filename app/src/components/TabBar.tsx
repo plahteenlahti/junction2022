@@ -1,4 +1,4 @@
-import { ChatIcon, RepeatClockIcon, StarIcon } from '@chakra-ui/icons'
+import { RepeatClockIcon, StarIcon } from '@chakra-ui/icons'
 import { Box, Text, useColorModeValue } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { useFBAuth } from './BehindAuth'
@@ -8,12 +8,13 @@ export const TabBar = () => {
   const { isSignedIn } = useFBAuth()
 
   const borderColor = useColorModeValue('gray.100', 'gray.900')
-
+  const background = useColorModeValue('brandWhite.100', 'brand.100')
   if (!isSignedIn) return null
 
   return (
     <Box
-      position="absolute"
+      position="fixed"
+      backgroundColor={background}
       bottom={0}
       left={0}
       right={0}
