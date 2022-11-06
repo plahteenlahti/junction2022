@@ -117,7 +117,7 @@ export const Send = () => {
 
   const onSend = () => {
     if (!receiver) return
-    navigate(`send/confirm?receiver_id=${receiver.id}`)
+    navigate(`/send/confirm?receiver_id=${receiver.id}`)
   }
 
   return (
@@ -200,11 +200,7 @@ export const Send = () => {
               />
             </InputGroup>
           ) : (
-            <ParticipantCard
-              email={receiver.email}
-              phone={receiver.phone}
-              // address={receiver.address}
-            />
+            <ParticipantCard email={receiver.email} phone={receiver.phone} />
           )}
         </Box>
       </Box>
