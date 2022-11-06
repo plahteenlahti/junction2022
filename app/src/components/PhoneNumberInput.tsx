@@ -25,7 +25,7 @@ export default function PhoneNumberInput({
 }: Props) {
   const [number, setNumber] = useState(value || '+358')
   const [selectedCountry, setSelectedCountry] = useState<string | undefined>(
-    'FIN'
+    getCountryIsoCode(number)
   )
 
   const onCountryChange: React.ChangeEventHandler<HTMLSelectElement> = e => {
