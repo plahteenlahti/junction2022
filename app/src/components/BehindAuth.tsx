@@ -21,8 +21,8 @@ export const BehindAuth = () => {
             <Route path="/" element={<Login />} />
           ) : (
             <>
-              <Route path="/" element={<History />} />
-              <Route path="/send" element={<History />} />
+              <Route path="/" element={<Send />} />
+              <Route path="/send" element={<Send />} />
             </>
           )}
           <Route path="/order" element={<Order />} />
