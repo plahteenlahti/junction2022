@@ -22,6 +22,7 @@ export const BehindAuth = () => {
             <>
               <Route path="/" element={<Send />} />
               <Route path="/send" element={<Send />} />
+              <Route path="/send/confirm" element={<Send />} />
             </>
           )}
           <Route path="/order" element={<Order />} />

@@ -33,6 +33,7 @@ type Participant = {
   }
   email: string
   phone: string
+  id: string
 }
 
 const receiverFound = (data: User[] | undefined): Participant | null => {
@@ -113,6 +114,11 @@ export const Send = () => {
 
   const [sourceAddressSearch, setSourceAddressSearch] = useState('')
   const [editMode, setEditMode] = useState(false)
+
+  const onSend = () => {
+    if (!receiver) return
+    navigate(`send/confirm?receiver_id=${receiver.id}`)
+  }
 
   return (
     <Container maxW="sm">
@@ -212,7 +218,8 @@ export const Send = () => {
         <Button
           size="lg"
           colorScheme={useColorModeValue('brand', 'brandWhite')}
-          width="100%">
+          width="100%"
+          onClick={onSend}>
           Send
         </Button>
       </Box>
