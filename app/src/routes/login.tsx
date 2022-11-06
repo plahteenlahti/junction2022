@@ -37,6 +37,8 @@ export const Login = () => {
   const auth = getAuth()
 
   setPersistence(auth, browserSessionPersistence)
+  const lightTextColor = useColorModeValue('blackAlpha.600', 'whiteAlpha.600')
+  const buttonColorScheme = useColorModeValue('brand', 'brandWhite')
 
   const [authStageInfo, setAuthStageInfo] = useState<
     | { step: 'init' }
@@ -132,10 +134,7 @@ export const Login = () => {
         <form onSubmit={sendCode}>
           <Heading marginY={6}>Ship My Pants</Heading>
           <Box width="100%">
-            <Text
-              marginBottom={2}
-              fontSize="xs"
-              color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
+            <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
               Login using your phone number
             </Text>
             <PhoneNumberInput
@@ -148,7 +147,7 @@ export const Login = () => {
               id="sign-in-button"
               marginTop={6}
               size="lg"
-              colorScheme={useColorModeValue('brand', 'brandWhite')}
+              colorScheme={buttonColorScheme}
               width="100%"
               visibility={!phoneNumberLoading ? 'visible' : 'hidden'}
               disabled={phoneNumberLoading}
