@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { History } from '../routes/history'
 import { Login } from '../routes/login'
 import { Order } from '../routes/order'
-import { OrderConfirmed } from '../routes/order-confirmed'
 import { Send } from '../routes/send'
 import { DeliveryNotification } from './DeliveryNotification'
 import { Navigation } from './Navigation'
@@ -27,7 +26,6 @@ export const BehindAuth = () => {
           )}
           <Route path="/order" element={<Order />} />
           <Route path="/history" element={<History />} />
-          <Route path="/order-confirmed" element={<OrderConfirmed />} />
         </Routes>
         <DeliveryNotification />
         <TabBar />
