@@ -6,7 +6,8 @@ import {
   Skeleton,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
+  Link
 } from '@chakra-ui/react'
 import { getAuth } from 'firebase/auth'
 import { where } from 'firebase/firestore'
@@ -60,11 +61,11 @@ const getItem = (d: Delivery, userId: string) => {
   const pickupEta = d.pickup_eta ? formatTime(d.pickup_eta) : undefined
   const dropoffEta = d.deliver_eta ? formatTime(d.deliver_eta) : undefined
   const trackingUrl = d.woltDetails?.trackingUrl
-  return (
+
+  const contents = (
     <HStack
       key={d.deliver_eta}
       _hover={trackingUrl ? { cursor: 'pointer' } : undefined}
-      onClick={trackingUrl ? () => {} : undefined}
       p={2}
       py={4}
       borderWidth={1}
@@ -85,6 +86,14 @@ const getItem = (d: Delivery, userId: string) => {
         )}
       </Text>
     </HStack>
+  )
+
+  return trackingUrl ? (
+    <Link href={trackingUrl} isExternal>
+      {contents}
+    </Link>
+  ) : (
+    contents
   )
 }
 
