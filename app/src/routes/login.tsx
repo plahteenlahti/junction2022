@@ -48,7 +48,7 @@ export const Login = () => {
   >({ step: 'init' })
   const navigate = useNavigate()
 
-  const [phoneNumber, setPhoneNumber] = useState('+421940837792')
+  const [phoneNumber, setPhoneNumber] = useState('+358')
   const [phoneNumberLoading, setPhoneNumberLoading] = useState(false)
   const [loaderState, setLoaderState] = useState(MODES.LOADING)
   useEffect(() => {

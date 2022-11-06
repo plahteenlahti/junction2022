@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom'
 import { usePlacesWidget } from 'react-google-autocomplete'
 import { useWriteData } from '../db/useWriteData'
 import { useDoc } from '../db/useDoc'
+import { m } from 'framer-motion'
 
 type Participant = {
   address: {
@@ -98,6 +99,8 @@ export const Send = () => {
     onPlaceSelected: place => {
       const address = parseAddress(place.address_components)
       writeData(`${auth.currentUser?.uid}`, {
+        name: 'Bob Junctioner',
+        email: 'bob@hackjunction.net',
         phone: auth.currentUser?.phoneNumber,
         address: {
           country: address.country ?? '',
