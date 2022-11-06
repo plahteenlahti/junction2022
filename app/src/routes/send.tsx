@@ -89,16 +89,13 @@ export const Send = () => {
     `${auth.currentUser?.uid}`
   )
 
-  const writeData = useWriteData<User>(
-    FirebaseCollection.Users,
-    `${auth.currentUser?.uid}`
-  )
+  const writeData = useWriteData<User>(FirebaseCollection.Users)
 
   const { ref }: { ref: RefObject<HTMLInputElement> } = usePlacesWidget({
     apiKey: 'AIzaSyBQzFH-bsHHN7xZWQC0f-vp2XRqN8mEY0U',
     onPlaceSelected: place => {
       const address = parseAddress(place.address_components)
-      writeData({
+      writeData(`${auth.currentUser?.uid}`, {
         phone: auth.currentUser?.phoneNumber,
         address: {
           country: address.country ?? '',

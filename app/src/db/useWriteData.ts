@@ -3,9 +3,9 @@ import { useCallback } from 'react'
 import { useFirestore } from 'reactfire'
 import { FirebaseCollection } from './collections'
 
-export const useWriteData = <T>(table: FirebaseCollection, id: string) => {
+export const useWriteData = <T>(table: FirebaseCollection) => {
   const db = useFirestore()
-  const writeData = useCallback(async (data: T) => {
+  const writeData = useCallback(async (id: string, data: T) => {
     await setDoc(doc(db, `${table}`, id), data as unknown)
   }, [])
 
