@@ -209,16 +209,6 @@ export const Send = () => {
         display="flex"
         flexDirection="column"
         justifyContent="flex-end">
-        <Box
-          flexDirection="row"
-          display="flex"
-          marginBottom={4}
-          alignItems="center"
-          justifyContent="center">
-          <Switch colorScheme={useColorModeValue('brand', 'brandWhite')}>
-            Receiver is paying for the delivery
-          </Switch>
-        </Box>
         <Button
           size="lg"
           colorScheme={useColorModeValue('brand', 'brandWhite')}
