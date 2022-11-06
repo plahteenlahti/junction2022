@@ -1,4 +1,4 @@
-import { ChatIcon } from '@chakra-ui/icons'
+import { ChatIcon, RepeatClockIcon, StarIcon } from '@chakra-ui/icons'
 import { Box, Text, useColorModeValue } from '@chakra-ui/react'
 import { Link, useLocation } from 'react-router-dom'
 import { useFBAuth } from './BehindAuth'
@@ -31,7 +31,7 @@ export const TabBar = () => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center">
-            <ChatIcon
+            <StarIcon
               color={pathname === '/' ? 'gray.500' : 'CaptionText'}
               marginBottom="1"
             />
@@ -51,7 +51,7 @@ export const TabBar = () => {
             flexDirection="column"
             justifyContent="center"
             alignItems="center">
-            <ChatIcon
+            <RepeatClockIcon
               color={pathname === '/history' ? 'gray.500' : 'CaptionText'}
               marginBottom="1"
             />
