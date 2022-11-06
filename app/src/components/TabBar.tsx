@@ -1,15 +1,15 @@
 import { ChatIcon } from '@chakra-ui/icons'
 import { Box, Text, useColorModeValue } from '@chakra-ui/react'
-import { getAuth } from 'firebase/auth'
 import { Link, useLocation } from 'react-router-dom'
+import { useFBAuth } from './BehindAuth'
 
 export const TabBar = () => {
   const { pathname } = useLocation()
-  const auth = getAuth()
+  const { isSignedIn } = useFBAuth()
 
   const borderColor = useColorModeValue('gray.100', 'gray.900')
 
-  if (!auth.currentUser) return null
+  if (!isSignedIn) return null
 
   return (
     <Box
