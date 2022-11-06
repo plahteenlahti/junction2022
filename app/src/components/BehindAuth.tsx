@@ -1,6 +1,6 @@
 import { getAuth, User } from 'firebase/auth'
-import { ReactNode, useEffect, useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth, useFirebaseApp } from 'reactfire'
 import { History } from '../routes/history'
 import { Login } from '../routes/login'

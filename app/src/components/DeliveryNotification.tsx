@@ -2,12 +2,12 @@ import {
   Box,
   Button,
   Modal,
-  Text,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure
 } from '@chakra-ui/react'
 import { getAuth } from 'firebase/auth'
