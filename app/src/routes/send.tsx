@@ -101,10 +101,10 @@ export const Send = () => {
       writeData({
         phone: auth.currentUser?.phoneNumber,
         address: {
-          country: address.country,
-          city: address.locality,
-          postcode: address.postal_code,
-          line1: `${address.route} ${address.street_number}`
+          country: address.country ?? '',
+          city: address.locality ?? '',
+          postcode: address.postal_code ?? '',
+          line1: `${address.route ?? ''} ${address.street_number ?? ''}`
         }
       })
       setEditMode(false)
@@ -137,11 +137,11 @@ export const Send = () => {
               email="perttu@lahteenlahti.com"
               phone="0503134326"
               address={{
-                country: user.data?.address?.country,
-                city: user.data?.address?.city,
-                postcode: user.data?.address?.postcode,
-                line1: user.data?.address?.line1,
-                line2: user.data?.address?.line2
+                country: user.data?.address?.country ?? '',
+                city: user.data?.address?.city ?? '',
+                postcode: user.data?.address?.postcode ?? '',
+                line1: user.data?.address?.line1 ?? '',
+                line2: user.data?.address?.line2 ?? ''
               }}
               editable={!!user.data?.address}
               onEdit={() => setEditMode(!editMode)}
