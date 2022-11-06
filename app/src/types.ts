@@ -26,16 +26,16 @@ export type Delivery = {
 }
 
 export type Address = {
-  city: string
-  country: string
-  line1: string
-  line2: string
-  postcode: string
+  city?: string
+  country?: string
+  line1?: string
+  line2?: string
+  postcode?: string
 }
 
 export type User = {
-  address: Address
-  email: string
-  name: string
-  phone: string
+  address?: Address | null
+  email?: string | null
+  name?: string | null
+  phone?: string | null
 }

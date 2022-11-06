@@ -3,11 +3,11 @@ import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 
 type Props = {
   address?: {
-    city: string
-    country: string
-    line1: string
-    line2: string
-    postcode: string
+    city?: string | null
+    country?: string | null
+    line1?: string | null
+    line2?: string | null
+    postcode?: string | null
   }
   email: string
   phone: string

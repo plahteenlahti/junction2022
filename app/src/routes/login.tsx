@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   FormControl,
+  Heading,
   HStack,
   Input,
   InputGroup,
@@ -40,7 +41,7 @@ export const Login = () => {
   >({ step: 'init' })
   const navigate = useNavigate()
 
-  const [phoneNumber, setPhoneNumber] = useState('+358')
+  const [phoneNumber, setPhoneNumber] = useState('+421940837792')
   const [loaderState, setLoaderState] = useState(MODES.LOADING)
   useEffect(() => {
     let timeout: null | NodeJS.Timeout = null
@@ -96,6 +97,7 @@ export const Login = () => {
         // Error; SMS not sent
       })
   }
+
   const loginWithCode = async (verificationCode: string) => {
     if (authStageInfo.step !== 'code') {
       return
@@ -116,7 +118,8 @@ export const Login = () => {
     return (
       <form onSubmit={sendCode}>
         <Container maxW="7xl">
-          <Box minWidth="sm" padding={6}>
+          <Heading marginY={6}>Ship My Pants</Heading>
+          <Box width="100%">
             <Text
               marginBottom={2}
               fontSize="xs"
@@ -137,9 +140,10 @@ export const Login = () => {
             </InputGroup>
             <Button
               id="sign-in-button"
-              marginTop={2}
-              colorScheme="blue"
-              variant="solid"
+              marginTop={6}
+              size="lg"
+              colorScheme={useColorModeValue('brand', 'brandWhite')}
+              width="100%"
               type="submit">
               Send
             </Button>
@@ -190,7 +194,12 @@ export const Login = () => {
   }
 
   return (
-    <Container maxW="7xl" alignContent={'center'}>
+    <Container
+      maxW="7xl"
+      height="3xl"
+      alignContent="center"
+      display="flex"
+      justifyContent="center">
       <AnimatedCheckmark mode={loaderState} />
     </Container>
   )
