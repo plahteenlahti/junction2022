@@ -127,18 +127,6 @@ export const Login = () => {
               color={useColorModeValue('blackAlpha.600', 'whiteAlpha.600')}>
               Login using your phone number
             </Text>
-            {/* <InputGroup>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<PhoneIcon color="gray.300" />}
-              />
-              <Input
-                value={phoneNumber}
-                onChange={e => setPhoneNumber(e.target.value)}
-                type="text"
-                placeholder="Phone number"
-              />
-            </InputGroup> */}
             <PhoneNumberInput
               value={phoneNumber}
               onChange={setPhoneNumber}
