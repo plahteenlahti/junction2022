@@ -182,7 +182,7 @@ export const Send = () => {
           </InputGroup>
         </Box>
 
-        <Box minWidth="sm" maxW="" paddingX={3} marginTop={6}>
+        <Box minWidth="sm" maxW="" paddingX={3}>
           <Text marginBottom={2} fontSize="xs" color={lightTextColor}>
             Deliver to
           </Text>
@@ -212,7 +212,7 @@ export const Send = () => {
       </Box>
 
       <Box
-        marginTop={32}
+        marginTop={24}
         height="100%"
         display="flex"
         flexDirection="column"
